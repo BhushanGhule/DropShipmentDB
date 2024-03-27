@@ -20,8 +20,42 @@
   },
   "cds": {
     "requires": {
-      "auth": "xsuaa",
-      "db": "hana"
+      "db": "hana",
+      "uaa": {
+        "kind": "xsuaa"
+      },
+      "auth": {
+        "[development]": {
+          "strategy": "mocked",
+          "users": {
+            "anubhav": {
+              "roles": [
+                "Viewer"
+              ],
+              "userAttributes": {
+                "BankName": [
+                  "My Bank of London"
+                ]
+              }
+            },
+            "ananya": {
+              "roles": [
+                "Viewer",
+                "Admin"
+              ],
+              "userAttributes": {
+                "BankName": [
+                  "My Bank of New York",
+                  "My Bank of Antioch"
+                ]
+              }
+            }
+          }
+        },
+        "[production]": {
+          "strategy": "JWT"
+        }
+      }
     }
   }
 }
